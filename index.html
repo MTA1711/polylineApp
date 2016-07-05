@@ -8,10 +8,17 @@
 	</head>
 
 	<body class="ng-scope" ng-controller="MainController as ctrl" >
-		<div class="page-header">
-			<h1>Draw Polyline App </h1>
+		<div class="panel panel-primary" id ="container">
+			<div class="panel-heading">
+				<h2 class="panel-title">Draw PolyLine App </h2>
+			</div>
+			<div id="map" ngeo-map="ctrl.map"></div>
+			<div id="controlPanel">
+				
+			<a href="" translate="" ngeo-btn="" ngeo-createfeature="" ngeo-createfeature-active="ctrl.createPointActive" ngeo-createfeature-features="ctrl.features" ngeo-createfeature-geom-type="ctrl.pointGeomType" ngeo-createfeature-map="::ctrl.map" class="btn btn-default ngeo-createfeature-point ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-touched" ng-class="{active: ctrl.createPointActive}" ng-model="ctrl.createPointActive">Add POI</a>
+			<a href="" translate="" ngeo-btn="" ngeo-createfeature="" ngeo-createfeature-active="ctrl.createLineStringActive" ngeo-createfeature-features="ctrl.features" ngeo-createfeature-geom-type="ctrl.lineStringGeomType" ngeo-createfeature-map="::ctrl.map" class="btn btn-default ngeo-createfeature-linestring ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-touched" ng-class="{active: ctrl.createLineStringActive}" ng-model="ctrl.createLineStringActive"> Draw polyline</a>
+			</div>
 		</div>
-		<div id="map" ngeo-map="ctrl.map"></div>
 
 		<script src="scripts/jquery.js"></script>
 		<script src="scripts/angular.js"></script>

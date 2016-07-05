@@ -1,4 +1,19 @@
+#container{
+	width: 95%;
+	margin:auto;
+}
 #map{
 	height: 90%;
 	width: 100%;
+}
+#controlPanel {
+	height: 10%;
+	width: 20%;
+	position: absolute;
+	top: 20%;
+	left: 5%;
+}
+
+#controlPanel a {
+	display: block;
 }
