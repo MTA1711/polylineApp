@@ -13,11 +13,19 @@
 				<h2 class="panel-title">Draw PolyLine App </h2>
 			</div>
 			<div id="map" ngeo-map="ctrl.map"></div>
-			<div id="controlPanel">
-				
-			<a href="" translate="" ngeo-btn="" ngeo-createfeature="" ngeo-createfeature-active="ctrl.createPointActive" ngeo-createfeature-features="ctrl.features" ngeo-createfeature-geom-type="ctrl.pointGeomType" ngeo-createfeature-map="::ctrl.map" class="btn btn-default ngeo-createfeature-point ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-touched" ng-class="{active: ctrl.createPointActive}" ng-model="ctrl.createPointActive">Add POI</a>
-			<a href="" translate="" ngeo-btn="" ngeo-createfeature="" ngeo-createfeature-active="ctrl.createLineStringActive" ngeo-createfeature-features="ctrl.features" ngeo-createfeature-geom-type="ctrl.lineStringGeomType" ngeo-createfeature-map="::ctrl.map" class="btn btn-default ngeo-createfeature-linestring ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-touched" ng-class="{active: ctrl.createLineStringActive}" ng-model="ctrl.createLineStringActive"> Draw polyline</a>
+
+			<div id="controlPanel" ngeo-btn-group="" >
+				<ngeo-drawfeature ngeo-btn-group="" class="btn-group ng-scope" ngeo-drawfeature-active="ctrl.drawActive" ngeo-drawfeature-map="ctrl.map">
+					<a href="" translate="" ngeo-btn="" ngeo-drawpoint="" class="btn btn-default ngeo-drawfeature-point ng-valid ng-not-empty ng-dirty ng-touched" ng-class="{active: dfCtrl.drawPoint.active}" ng-model="dfCtrl.drawPoint.active"></a>
+					<a href="" translate="" ngeo-btn="" ngeo-measurelength="" class="btn btn-default ngeo-drawfeature-linestring ng-valid ng-not-empty ng-dirty ng-touched" ng-class="{active: dfCtrl.measureLength.active}" ng-model="dfCtrl.measureLength.active"></a>
+      			</ngeo-drawfeature>
+
+				<div><input checked="checked" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-model="ctrl.dummyActive" type="checkbox"> Disable cursor</div>
 			</div>
+
+			<div class="buttons panelControl">
+     			<button ng-click="ctrl.simplePopup();" title="Opens control panel" type="button" class="btn btn-primary">Control panel</button>
+     		</div>
 		</div>
 
 		<script src="scripts/jquery.js"></script>
@@ -27,6 +35,7 @@
 		<script src="scripts/bootstrap.js"></script>
 		<script src="scripts/angular-gettext.js"></script>
 		<script src="scripts/ngeo.js"></script>
+		<script src="scripts/watchwatchers.js"></script>
 		<script src="app/app.js"></script>
 	</body>
 </html>
