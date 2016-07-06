@@ -88,13 +88,21 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
 
   console.log(vector.getSource());
   this.features = vector.getSource().getFeatures();
+  this.vector_ = vector;
+
+  /**
+   * @type {string}
+   * @export
+   */
+  this.fileread = '';
+
+  $scope.$watch(angular.bind(this, function() {
+    return this.fileread;
+  }), angular.bind(this, this.importJSON_));
 
 };
 
-app.module.constant('ngeoExportFeatureFormats', [
-    ngeo.FeatureHelper.FormatType.KML,
-    ngeo.FeatureHelper.FormatType.GPX
-]);
+
 
 /**
  * @export
@@ -115,5 +123,16 @@ app.MainController.prototype.exportAsJson = function() {
   var blob = new Blob([json], {type: "application/json"});
   saveAs(blob, 'fileJSON.json');
 };
+
+/**
+ * @param {string} jsonFile jsonFile document.
+ * @private
+ */
+app.MainController.prototype.importJSON_ = function(jsonFile) {
+  var features = this.geoJsonFormat_.readFeatures(jsonFile);
+  this.vector_.getSource().clear(true);
+  this.vector_.getSource().addFeatures(features);
+};
+
 
 app.module.controller('MainController', app.MainController);
