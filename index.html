@@ -21,6 +21,9 @@
       			</ngeo-drawfeature>
 
 				<div><input checked="checked" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-model="ctrl.dummyActive" type="checkbox"> Disable cursor</div>
+
+				<button class="btn btn-link" ng-click="ctrl.exportAsKml()">Export as KML</button>
+				<button class="btn btn-link" ng-click="ctrl.exportAsJson()">Export as JSON</button>
 			</div>
 
 			<div class="buttons panelControl">
@@ -35,6 +38,7 @@
 		<script src="scripts/bootstrap.js"></script>
 		<script src="scripts/angular-gettext.js"></script>
 		<script src="scripts/ngeo.js"></script>
+		<script src="scripts/FileSaver.js"></script>
 		<script src="scripts/watchwatchers.js"></script>
 		<script src="app/app.js"></script>
 	</body>
