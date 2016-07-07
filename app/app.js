@@ -123,7 +123,7 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
   var dummyToolActivate = new ngeo.ToolActivate(this, 'dummyActive');
   ngeoToolActivateMgr.registerTool('mapTools', dummyToolActivate, true);
 
-  console.log(vector.getSource());
+
   this.features = vector.getSource().getFeatures();
   this.vector_ = vector;
 
@@ -136,6 +136,17 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
   $scope.$watch(angular.bind(this, function() {
     return this.fileread;
   }), angular.bind(this, this.importJSON_));
+
+
+
+  this.interaction = new ngeo.interaction.Modify(
+    /** @type {olx.interaction.ModifyOptions} */({
+      features: this.vector_.getSource().getFeaturesCollection()
+    }));
+
+  var interaction = this.interaction;
+  interaction.setActive(true);
+  this.map.addInteraction(interaction);
 
 };
 
@@ -156,6 +167,7 @@ app.MainController.prototype.exportAsKml = function() {
 };
 
 app.MainController.prototype.exportAsJson = function() { 
+  console.log(this.vector_.getSource().getFeaturesCollection());
   var json = this.geoJsonFormat_.writeFeatures(this.features);
   var blob = new Blob([json], {type: "application/json"});
   saveAs(blob, 'fileJSON.json');
@@ -174,7 +186,7 @@ app.MainController.prototype.importJSON_ = function(jsonFile) {
     this.vector_.getSource().addFeatures(features);
     alert("import finished");
   }else{
-    console.log("select a file !!");
+    console.log("select a file !!!");
   }
 
 };
