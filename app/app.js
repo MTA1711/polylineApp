@@ -185,6 +185,7 @@ app.MainController.prototype.importJSON_ = function(jsonFile) {
     this.vector_.getSource().clear(true);
     this.vector_.getSource().addFeatures(features);
     alert("import finished");
+    $("#importFile").val("");
   }else{
     console.log("select a file !!!");
   }
@@ -193,3 +194,7 @@ app.MainController.prototype.importJSON_ = function(jsonFile) {
 
 
 app.module.controller('MainController', app.MainController);
+
+$(function() {
+  $( "#controlPanel" ).draggable();
+});

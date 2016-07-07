@@ -2,20 +2,29 @@
 	width: 95%;
 	margin:auto;
 }
+
 #map{
 	height: 90%;
 	width: 100%;
 }
+
 #controlPanel {
-	height: 10%;
-	width: 20%;
-	position: absolute;
-	top: 20%;
-	left: 5%;
+    background-color: #ddeedd;
+    left: 5%;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: absolute;
+    top: 20%;
+    width: 15%;
+    border-radius: 5px;
 }
 
 #controlPanel a {
-	display: block;
+	margin-right: 10px;
+}
+
+#exportJSON{
+	padding-left: 0px !important; 
 }
 
 .panelControl {
@@ -24,7 +33,6 @@
 	left: 5%;
 	display: none;
 }
-
 
 /*POI and PolyLine*/
 ngeo-drawfeature {
