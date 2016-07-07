@@ -5,6 +5,43 @@ var app = {};
 /** @type {!angular.Module} **/
 app.module = angular.module('app', ['ngeo']);
 
+/**
+ * @param {angular.$window} $window The Angular window service.
+ * @return {angular.Directive} Directive Definition Object.
+ * @ngInject
+ */
+app.filereadDirective = function($window) {
+  if (!$window.FileReader) {
+    throw new Error('Browser does not support FileReader');
+  }
+  return {
+    restrict: 'A',
+    scope: {
+      'fileread': '=appFileread'
+    },
+    link:
+        /**
+         * @param {angular.Scope} scope Scope.
+         * @param {angular.JQLite} element Element.
+         * @param {angular.Attributes} attrs Attributes.
+         */
+        function(scope, element, attrs) {
+          console.log("import file call");
+          element.bind('change', function(changeEvent) {
+            var fileReader = new FileReader();
+            fileReader.onload = function(loadEvent) {
+              scope.$apply(function() {
+                scope.fileread = loadEvent.target.result;
+              });
+            };
+            fileReader.readAsText(changeEvent.target.files[0]);
+          });
+        }
+  };
+};
+
+
+app.module.directive('appFileread', app.filereadDirective);
 
 /**
  * @param {!angular.Scope} $scope Angular scope.
@@ -129,9 +166,17 @@ app.MainController.prototype.exportAsJson = function() {
  * @private
  */
 app.MainController.prototype.importJSON_ = function(jsonFile) {
-  var features = this.geoJsonFormat_.readFeatures(jsonFile);
-  this.vector_.getSource().clear(true);
-  this.vector_.getSource().addFeatures(features);
+  
+  if (jsonFile.length > 0){
+    console.log(jsonFile);
+    var features = this.geoJsonFormat_.readFeatures(jsonFile);
+    this.vector_.getSource().clear(true);
+    this.vector_.getSource().addFeatures(features);
+    alert("import finished");
+  }else{
+    console.log("select a file !!");
+  }
+
 };
 
 

@@ -68,3 +68,8 @@ ngeo-drawfeature {
 .tooltip-static:before {
 	border-top-color: #ffcc33;
 }
+/*end POI and PolyLine */
+
+#exportKML{
+	display: none;
+}

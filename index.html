@@ -22,8 +22,9 @@
 
 				<div><input checked="checked" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-model="ctrl.dummyActive" type="checkbox"> Disable cursor</div>
 
-				<button class="btn btn-link" ng-click="ctrl.exportAsKml()">Export as KML</button>
+				<button class="btn btn-link" ng-click="ctrl.exportAsKml()" id="exportKML">Export as KML</button>
 				<button class="btn btn-link" ng-click="ctrl.exportAsJson()">Export as JSON</button> <br>
+				
 				<input class="ng-isolate-scope" id="importFile" app-fileread="ctrl.fileread" type="file">
 			</div>
 
@@ -42,5 +43,6 @@
 		<script src="scripts/FileSaver.js"></script>
 		<script src="scripts/watchwatchers.js"></script>
 		<script src="app/app.js"></script>
+		<script src="app/directives/directives.js"></script>
 	</body>
 </html>
