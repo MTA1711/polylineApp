@@ -95,7 +95,13 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
   this.map = new ol.Map({
     layers: [
       new ol.layer.Tile({
-        source: new ol.source.OSM()
+        //source: new ol.source.OSM()
+
+        source: new ol.source.TileWMS({
+              url: 'http://demo.opengeo.org/geoserver/wms',
+              params: {LAYERS: 'nasa:bluemarble', VERSION: '1.1.1'}
+            })
+
       }),
       vector
     ],
@@ -141,7 +147,14 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
 
   this.interaction = new ngeo.interaction.Modify(
     /** @type {olx.interaction.ModifyOptions} */({
-      features: this.vector_.getSource().getFeaturesCollection()
+      features: this.vector_.getSource().getFeaturesCollection(),
+
+      removeCondition: function(event) {
+          console.log("deleteCondition call ");
+          return ol.events.condition.altKeyOnly(event) &&
+              ol.events.condition.singleClick(event);
+      }
+
     }));
 
   var interaction = this.interaction;
