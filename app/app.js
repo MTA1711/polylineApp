@@ -132,6 +132,9 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
    */
   this.dummyActive = true;
 
+  this.deleteElement = false;
+  DeleteFeatureActivate = (this.deleteElement) ? 1 :  0;
+  console.log("DeleteFeatureActivate = "+DeleteFeatureActivate);
   var dummyToolActivate = new ngeo.ToolActivate(this, 'dummyActive');
   ngeoToolActivateMgr.registerTool('mapTools', dummyToolActivate, true);
 
@@ -201,7 +204,7 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
 
 
   this.map.on('singleclick', function(e) {
-      if (DeleteFeatureActivate == 1){
+    if (DeleteFeatureActivate == 1){
       console.log (e.coordinate);
       console.log (e.pixel);
 
@@ -246,11 +249,8 @@ app.MainController = function($scope, $document, ngeoFeatures, ngeoToolActivateM
           }else{
             vector.getSource().removeFeature(Feature);
           }
- 
           
         }
-
-
       }else{
         console.log (" No features ");
       }
@@ -354,3 +354,9 @@ function getClosestPoint( Point, ArrayOfPoint){
   console.log(MinimunDistance);
   return ArrayOfPoint[PositionOfClosestPoint];
 }
+
+/*function deleteActivited(){
+  if (DeleteFeatureActivate == 0){
+     DeleteFeatureActivate = 1;
+  }else
+}*/
